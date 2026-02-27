@@ -1,6 +1,6 @@
 ---
-name: 💡 Sugestão de melhoria
-about: Sugira uma melhoria para o projeto
+name: 💡 Acessibilidade visual
+about: Aumentar e diminuir a fonte da pagina
 title: "[SUGESTÃO] "
 labels: enhancement
 ---
