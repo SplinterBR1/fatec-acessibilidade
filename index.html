@@ -104,6 +104,7 @@
       box-shadow: 3px 3px 5px gray;
       cursor: pointer;
       margin: 5px;
+      padding: 3px 10px;
     }
 
     .botaoFonte:hover {
@@ -391,14 +392,39 @@
   </style>
 
   <script>
-
+    // Melhoria feita com consulta de IA ( chatGPT )
     function alterarFonte(valor) {
-          const pagina = document.getElementById('pagina');
-          let estilo = window.getComputedStyle(pagina).fontSize
-          let tamanho = parseFloat(estilo);
-          pagina.style.fontSize = (tamanho + valor) + 'px';
+      const pagina = document.getElementById('pagina');
+      if (!pagina) return;
+
+      let tamanho = parseFloat(window.getComputedStyle(pagina).fontSize);
+      let novoTamanho = tamanho + valor;
+
+      // Limites de tamanho
+      if (novoTamanho < 10) novoTamanho = 10;
+      if (novoTamanho > 40) novoTamanho = 40;
+
+      pagina.style.fontSize = novoTamanho + 'px';
+
+      // Salva no localStorage para manter a fonte ao atualizar a pagina
+      localStorage.setItem('tamanhoFonte', novoTamanho);
     }
-    
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const pagina = document.getElementById('pagina');
+      const tamanhoSalvo = localStorage.getItem('tamanhoFonte');
+
+      if (pagina && tamanhoSalvo) {
+        pagina.style.fontSize = tamanhoSalvo + 'px';
+      }
+    });
+
+    function restaurarFonte() {
+      const pagina = document.getElementById('pagina');
+      if (!pagina) return;
+      localStorage.removeItem('tamanhoFonte');
+      pagina.style.fontSize = '';
+    }
   </script>
 </head>
 
@@ -429,11 +455,12 @@
             <div class="search-icon"></div>
             <div class="search-input">Buscar no portal… (falso input)</div>
 
-            <!-- BOTOES PARA AUMENTAR E DIMINUIR A FONTE DA PAGINA -->
+            <!-- BOTOES PARA AUMENTAR, DIMINUIR E RESETAR A FONTE DA PAGINA -->
             <div>
-                <!-- UTILIZE O VALOR DESEJADO COMO PARAMENTRO -->
+              <!-- UTILIZE O VALOR DESEJADO COMO PARAMENTRO -->
               <button class="botaoFonte" onclick="alterarFonte(-2)">A-</button>
               <button class="botaoFonte" onclick="alterarFonte(2)">A+</button>
+              <button class="botaoFonte" onclick="restaurarFonte()">Padrão</button>
             </div>
           </div>
 
@@ -548,7 +575,7 @@
 
               <div id="troca1" class="rank-item">
                 <div class="rank-num">1</div>
-                <div  class="rank-text">
+                <div class="rank-text">
                   <div class="t">Preço de eletrônicos cai após mudança tributária</div>
                   <div class="m">Entenda o que muda e quando chega ao consumidor</div>
                 </div>
