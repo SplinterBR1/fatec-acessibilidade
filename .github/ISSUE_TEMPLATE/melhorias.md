@@ -28,7 +28,7 @@ Codigo JS:
 https://github.com/SplinterBR1/fatec-acessibilidade/tree/atividade-1-fonte-aumentar-diminuir
 
 ## Membros da equipe
-Abigaiu Porto
-Vanessa Rosa
-Bruno Henrique
+Abigaiu Porto;
+Vanessa Rosa;
+Bruno Henrique;
 
