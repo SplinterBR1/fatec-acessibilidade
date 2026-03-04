@@ -97,6 +97,19 @@
       justify-content: center;
     }
 
+    .botaoFonte {
+      font-size: 1.5em;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 3px 3px 5px gray;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .botaoFonte:hover {
+      transform: scale(1.2);
+    }
+
     /* links fake com div */
     .nav-item {
       padding: 8px 10px;
@@ -419,8 +432,8 @@
             <!-- BOTOES PARA AUMENTAR E DIMINUIR A FONTE DA PAGINA -->
             <div>
                 <!-- UTILIZE O VALOR DESEJADO COMO PARAMENTRO -->
-              <button onclick="alterarFonte(-2)">A-</button>
-              <button onclick="alterarFonte(2)">A+</button>
+              <button class="botaoFonte" onclick="alterarFonte(-2)">A-</button>
+              <button class="botaoFonte" onclick="alterarFonte(2)">A+</button>
             </div>
           </div>
 
