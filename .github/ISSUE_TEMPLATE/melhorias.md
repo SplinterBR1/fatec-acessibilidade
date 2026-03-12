@@ -25,6 +25,24 @@ Qual problema isso resolve?
   document.body.classList.toggle("alto-contraste");
   });
 
+### Melhorias sugeridas por IA ( chat gpt )
+
+- const botaoContraste = document.getElementById("botao-contraste");
+
+  if (localStorage.getItem("contraste") === "ativo") {
+    document.body.classList.add("alto-contraste");
+  }
+
+  botaoContraste.addEventListener("click", () => {
+    document.body.classList.toggle("alto-contraste");
+
+    if (document.body.classList.contains("alto-contraste")) {
+        localStorage.setItem("contraste", "ativo");
+    } else {
+        localStorage.setItem("contraste", "inativo");
+    }
+  });
+
 ## link para o projeto
 https://github.com/SplinterBR1/fatec-acessibilidade/tree/atividade-2-contraste
 

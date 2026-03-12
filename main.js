@@ -36,7 +36,20 @@ function restaurarFonte() {
 
 // Botao para alterar o contraste da pagina
 const botaoContraste = document.getElementById("botao-contraste");
+
+// Verifica a opçao salva ao carregar a pagina
+if (localStorage.getItem("contraste") === "ativo") {
+    document.body.classList.add("alto-contraste");
+}
+
 botaoContraste.addEventListener("click", () => {
-  document.body.classList.toggle("alto-contraste");
+    document.body.classList.toggle("alto-contraste");
+
+    // Salva o modo atual
+    if (document.body.classList.contains("alto-contraste")) {
+        localStorage.setItem("contraste", "ativo");
+    } else {
+        localStorage.setItem("contraste", "inativo");
+    }
 });
 
