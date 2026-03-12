@@ -26,7 +26,7 @@ Qual problema isso resolve?
   });
 
 ## link para o projeto
-https://github.com/SplinterBR1/fatec-acessibilidade/tree/atividade-1-fonte-aumentar-diminuir
+https://github.com/SplinterBR1/fatec-acessibilidade/tree/atividade-2-contraste
 
 ## Membros da equipe
 Abigaiu Porto;
