@@ -1,60 +1,29 @@
 ---
 name: 💡 Acessibilidade visual
-about: Aumentar e diminuir a fonte da pagina
-title: " Acessibilidade - 3º Semestre - Sistemas para Internet"
+about: Alterar o contraste da pagina para melhor visibilidade
+title: "Acessibilidade - 3º Semestre - Sistemas para Internet"
 labels: enhancement
 ---
 
 ## 📌 Descrição
 Descreva sua sugestão.
-- 1 - Criar dois botões para aumentar e diminuir a fonte da pagina toda utilizando JavaScript
-- 2 - Posicionar os botões na barra de navegação do site para facil acesso ao navegar
-- 3 - Não quebrar o layout da pagina ao utilizar os botões
+- 1 - Criar um botao utilizando HTML e CSS para alterar entre o modo alto contraste
+- 2 - Posicionar o botão na barra acessibilidade do site para facil acesso ao navegar
+- 3 - Não quebrar o layout da pagina ao utilizar o botão
 
 ## 🎯 Objetivo
 Qual problema isso resolve?
-- Baixa Visão
+- Dificuldade na leitura e identificação de elementos na tela devido ao contraste entre as cores
 
 ## 📝 Informações adicionais
-### Codigo JS: 
-- function alterarFonte(valor) {
-    const pagina = document.getElementById('pagina');
-    let estilo = window.getComputedStyle(pagina).fontSize
-    let tamanho = parseFloat(estilo);
-    pagina.style.fontSize = (tamanho + valor) + 'px';
-}
+- Adicionados os arquivos CSS e JS para separar o codigo do HTML
 
-### Codigo JS com melhorias sugeridas por IA: 
--   function alterarFonte(valor) {
-      const pagina = document.getElementById('pagina');
-      if (!pagina) return;
+### Codigo JS - contraste: 
+- const botaoContraste = document.getElementById("botao-contraste");
 
-      let tamanho = parseFloat(window.getComputedStyle(pagina).fontSize);
-      let novoTamanho = tamanho + valor;
-
-    
-      if (novoTamanho < 10) novoTamanho = 10;
-      if (novoTamanho > 40) novoTamanho = 40;
-
-      pagina.style.fontSize = novoTamanho + 'px';
-      localStorage.setItem('tamanhoFonte', novoTamanho);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const pagina = document.getElementById('pagina');
-      const tamanhoSalvo = localStorage.getItem('tamanhoFonte');
-
-      if (pagina && tamanhoSalvo) {
-        pagina.style.fontSize = tamanhoSalvo + 'px';
-      }
-    });
-
-    function restaurarFonte() {
-      const pagina = document.getElementById('pagina');
-      if (!pagina) return;
-      localStorage.removeItem('tamanhoFonte');
-      pagina.style.fontSize = '';
-    }
+  botaoContraste.addEventListener("click", () => {
+  document.body.classList.toggle("alto-contraste");
+  });
 
 ## link para o projeto
 https://github.com/SplinterBR1/fatec-acessibilidade/tree/atividade-1-fonte-aumentar-diminuir

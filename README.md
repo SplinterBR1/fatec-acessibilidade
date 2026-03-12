@@ -1,59 +1,60 @@
 # Projeto base para aula de Acessibilidade
 
-## Desafio 1 — Aumentar/Diminuir Fonte
+## Desafio 2 — Contraste
 
 ## Objetivo
-Melhorar a usabilidade para pessoas com baixa visão.
-
-- [x] Escreva em um papel um algoritmo que permita aumentar ou diminuir o tamanho da letra conforme a preferência do usuário
+- Melhorar a usabilidade para pessoas com baixa visão.
 
 ### Requisitos
-- Botão A+
-- Botão A-
-- Não quebrar layout
-- Usar unidades relativas 
+- Alterar constraste da pagina para melhorar a visibilidade 
 
+### Elementos adicionados
+```HTML
+    <section class="menu-acessibilidade">
+        <h4 class="hidden">seção de acessibilidade</h4>
+        <button class="botaoFonte" onclick="alterarFonte(-2)">A-</button>
+        <button class="botaoFonte" onclick="alterarFonte(2)">A+</button>
+        <button class="botaoFonte" onclick="restaurarFonte()">Padrão</button>
+        <button class="botaoFonte" id="botao-contraste">Contraste</button>
+    </section>
+```
 
-```javascript - linha 380
-    // função para aumentar e diminuir a fonte global da pagina utilizando os botões A+ e A-
-    function alterarFonte(valor) {
-        const pagina = document.getElementById('pagina');
-        let estilo = window.getComputedStyle(pagina).fontSize
-        let tamanho = parseFloat(estilo);
-        pagina.style.fontSize = (tamanho + valor) + 'px';
+```CSS - barra de acessibilidades
+    .botaoFonte {
+        font-size: 1.1em;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        margin: 5px .5vw;
+        padding: 3px 10px;
     }
 
-    // Melhoria feita utilizando consulta de IA ( chatGPT )
-        function alterarFonte(valor) {
-        const pagina = document.getElementById('pagina');
-        if (!pagina) return;
+    .botaoFonte:hover {
+        transform: scale(.95);
+        transition: .5 ease-in-out;
+    }
 
-        let tamanho = parseFloat(window.getComputedStyle(pagina).fontSize);
-        let novoTamanho = tamanho + valor;
+    .alto-contraste {
+        background-color: #000;
+        color: #fff;
+    }
 
-        // Limites de tamanho
-        if (novoTamanho < 10) novoTamanho = 10;
-        if (novoTamanho > 40) novoTamanho = 40;
+    body.alto-contraste div {
+        background-color: hsl(0, 3%, 7%);
+        color: #fff;
+    }
 
-        pagina.style.fontSize = novoTamanho + 'px';
+    body.alto-contraste .pill {
+        background-color: lightgrey;
+        color: black;
+        font-weight: 600;
+    }
+```
 
-        // Salva no localStorage para manter a fonte ao atualizar a pagina
-        localStorage.setItem('tamanhoFonte', novoTamanho);
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-        const pagina = document.getElementById('pagina');
-        const tamanhoSalvo = localStorage.getItem('tamanhoFonte');
-
-        if (pagina && tamanhoSalvo) {
-            pagina.style.fontSize = tamanhoSalvo + 'px';
-        }
-        });
-
-        function restaurarFonte() {
-        const pagina = document.getElementById('pagina');
-        if (!pagina) return;
-        localStorage.removeItem('tamanhoFonte');
-        pagina.style.fontSize = '';
-        }
+```JavaScript
+    const botaoContraste = document.getElementById("botao-contraste");
+    
+    botaoContraste.addEventListener("click", () => {
+    document.body.classList.toggle("alto-contraste");
+    });
 ```
